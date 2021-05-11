@@ -15,40 +15,53 @@ const Information = (data) => {
   const numberClass = 'text-5xl p-5'
   const textClass = 'text-lg font-thin'
 
-  // Constant Initialization
   data = data.data
+  // Constant Initialization
   const goalAmount = 100000000
   const population = 66000000
 
   // Total Vaccinated Number
-  const totalVaccinated = data[data.length - 1].totalVac
-  const totalVaccinatedInt = parseInt(totalVaccinated.replaceAll(',', ''))
-  const totalVaccinatedGoalPercentage = parseFloat(
-    ((totalVaccinatedInt * 100) / goalAmount).toFixed(2)
-  )
-  const totalVaccinatedPopulationPercentage = parseFloat(
-    ((totalVaccinatedInt * 100) / (population * 2)).toFixed(2)
-  )
+  const totalVaccinated =
+    data != undefined ? data[data.length - 1].totalVac : null
+  const totalVaccinatedInt =
+    totalVaccinated != null
+      ? parseInt(totalVaccinated.replaceAll(',', ''))
+      : null
+  const totalVaccinatedGoalPercentage =
+    totalVaccinatedInt != null
+      ? parseFloat(((totalVaccinatedInt * 100) / goalAmount).toFixed(2))
+      : null
+  const totalVaccinatedPopulationPercentage =
+    totalVaccinatedInt != null
+      ? parseFloat(((totalVaccinatedInt * 100) / (population * 2)).toFixed(2))
+      : null
 
   // First Dose Number
-  const firstDosed = data[data.length - 1].firstDose
-  const firstDosedInt = parseInt(firstDosed.replaceAll(',', ''))
-  const firstDosedPercentage = parseFloat(
-    ((firstDosedInt * 100) / population).toFixed(2)
-  )
+  const firstDosed = data != undefined ? data[data.length - 1].firstDose : null
+  const firstDosedInt =
+    firstDosed != null ? parseInt(firstDosed.replaceAll(',', '')) : null
+  const firstDosedPercentage =
+    firstDosedInt != null
+      ? parseFloat(((firstDosedInt * 100) / population).toFixed(2))
+      : null
   // Second Dose Number
-  const secondDosed = data[data.length - 1].secondDose
-  const secondDosedInt = parseInt(secondDosed.replaceAll(',', ''))
-  const secondDosedPercentage = parseFloat(
-    ((secondDosedInt * 100) / population).toFixed(2)
-  )
+  const secondDosed =
+    data != undefined ? data[data.length - 1].secondDose : null
+  const secondDosedInt =
+    secondDosed != null ? parseInt(secondDosed.replaceAll(',', '')) : null
+  const secondDosedPercentage =
+    secondDosedInt != null
+      ? parseFloat(((secondDosedInt * 100) / population).toFixed(2))
+      : null
 
   // Rate Number and Styling
-  const doesDifferenceInt = parseInt(
-    data[data.length - 1].vacRate.replaceAll(',', '')
-  )
+  const doesDifferenceInt =
+    data != undefined
+      ? parseInt(data[data.length - 1].vacRate.replaceAll(',', ''))
+      : null
   const sign = doesDifferenceInt > 0 ? '+' : '-'
-  const doseDifference = sign + data[data.length - 1].vacRate
+  const doseDifference =
+    data != undefined ? sign + data[data.length - 1].vacRate : null
   const doseDifferenceClass =
     doesDifferenceInt > 0
       ? 'text-5xl p-5 text-green-400'
@@ -57,7 +70,10 @@ const Information = (data) => {
   // Average Rate
   let sumDifference = 0
   for (let i = 1; i < 8; i++) {
-    sumDifference += parseInt(data[data.length - i].vacRate.replaceAll(',', ''))
+    sumDifference +=
+      data != undefined
+        ? parseInt(data[data.length - i].vacRate.replaceAll(',', ''))
+        : 0
   }
   const averageDoseDifference = sumDifference / 7
 
@@ -65,7 +81,6 @@ const Information = (data) => {
   const yearsLeft = parseFloat(
     ((goalAmount - totalVaccinatedInt) / averageDoseDifference / 365).toFixed(2)
   )
-
   return (
     <div className="max-w-2xl mx-auto">
       <div

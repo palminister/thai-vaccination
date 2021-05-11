@@ -4,18 +4,22 @@ const Syringe = (data) => {
   data = data.data
   const population = 66000000
   // First Dose Number
-  const firstDosed = data[data.length - 1].firstDose
-  const firstDosedInt = parseInt(firstDosed.replaceAll(',', ''))
-  const firstDosedPercentage = parseFloat(
-    ((firstDosedInt * 100) / population).toFixed(2)
-  )
+  const firstDosed = data != undefined ? data[data.length - 1].firstDose : null
+  const firstDosedInt =
+    firstDosed != null ? parseInt(firstDosed.replaceAll(',', '')) : null
+  const firstDosedPercentage =
+    firstDosedInt != null
+      ? parseFloat(((firstDosedInt * 100) / population).toFixed(2))
+      : null
   // Second Dose Number
-  const secondDosed = data[data.length - 1].secondDose
-  const secondDosedInt = parseInt(secondDosed.replaceAll(',', ''))
-  const secondDosedPercentage = parseFloat(
-    ((secondDosedInt * 100) / population).toFixed(2)
-  )
-
+  const secondDosed =
+    data != undefined ? data[data.length - 1].secondDose : null
+  const secondDosedInt =
+    secondDosed != null ? parseInt(secondDosed.replaceAll(',', '')) : null
+  const secondDosedPercentage =
+    secondDosedInt != null
+      ? parseFloat(((secondDosedInt * 100) / population).toFixed(2))
+      : null
   return (
     <div className="flex w-screen h-screen overflow-hidden">
       <div className="absolute w-[100%] p-5 font-anuphan top-[22%] text-center">
@@ -24,7 +28,7 @@ const Syringe = (data) => {
         </p>
         <p className="p-3 pr-5 text-sm text-right text-gray-300 sm:p-5 sm:text-center">
           <span className="text-green-400">{'> '}</span>อัปเดตล่าสุด{' '}
-          {data[data.length - 1].date}, 2021
+          {data != undefined ? data[data.length - 1].date : null}, 2021
         </p>
       </div>
       <div className="absolute p-5 text-lg w-screen text-white font-anuphan bottom-[18%] text-center justify-center">
