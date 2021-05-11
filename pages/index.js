@@ -40,6 +40,7 @@ export const getStaticProps = async () => {
 }
 
 const Home = (data) => {
+  if (!data) return <h1 className="font-sourcecode">404 This Page is Dead</h1>
   return (
     <div className="bg-gradient-to-br from-gray-900 to-black">
       <Head>
