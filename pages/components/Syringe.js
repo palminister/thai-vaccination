@@ -2,28 +2,28 @@ import { Link } from 'react-scroll'
 
 const Syringe = (data) => {
   data = data.data
-  const population = 66000000
-  // First Dose Number
-  const firstDosed = data != undefined ? data[data.length - 1].firstDose : null
-  const firstDosedInt =
-    (firstDosed != null) & (firstDosed != undefined)
-      ? parseInt(String(firstDosed).replaceAll(',', ''))
-      : null
-  const firstDosedPercentage =
-    (firstDosedInt != null) & (firstDosedInt != undefined)
-      ? parseFloat(((firstDosedInt * 100) / population).toFixed(2))
-      : null
-  // Second Dose Number
-  const secondDosed =
-    data != undefined ? data[data.length - 1].secondDose : null
-  const secondDosedInt =
-    (secondDosed != null) & (secondDosed != undefined)
-      ? parseInt(String(secondDosed).replaceAll(',', ''))
-      : null
-  const secondDosedPercentage =
-    (secondDosedInt != null) & (secondDosedInt != undefined)
-      ? parseFloat(((secondDosedInt * 100) / population).toFixed(2))
-      : null
+  // const population = 66000000
+  // // First Dose Number
+  // const firstDosed = data != undefined ? data[data.length - 1].firstDose : null
+  // const firstDosedInt =
+  //   (firstDosed != null) & (firstDosed != undefined)
+  //     ? parseInt(String(firstDosed).replaceAll(',', ''))
+  //     : null
+  // const firstDosedPercentage =
+  //   (firstDosedInt != null) & (firstDosedInt != undefined)
+  //     ? parseFloat(((firstDosedInt * 100) / population).toFixed(2))
+  //     : null
+  // // Second Dose Number
+  // const secondDosed =
+  //   data != undefined ? data[data.length - 1].secondDose : null
+  // const secondDosedInt =
+  //   (secondDosed != null) & (secondDosed != undefined)
+  //     ? parseInt(String(secondDosed).replaceAll(',', ''))
+  //     : null
+  // const secondDosedPercentage =
+  //   (secondDosedInt != null) & (secondDosedInt != undefined)
+  //     ? parseFloat(((secondDosedInt * 100) / population).toFixed(2))
+  //     : null
   return (
     <div className="flex w-screen h-screen overflow-hidden">
       <div className="absolute w-[100%] p-5 font-anuphan top-[22%] text-center">
@@ -32,7 +32,7 @@ const Syringe = (data) => {
         </p>
         <p className="p-3 pr-5 text-sm text-right text-gray-300 sm:p-5 sm:text-center">
           <span className="text-green-400">{'> '}</span>อัปเดตล่าสุด{' '}
-          {data != undefined ? data[data.length - 1].date : null}, 2021
+          {data != undefined ? data.latestDate : null}, 2021
         </p>
       </div>
       <div className="absolute p-5 text-lg w-screen text-white font-anuphan bottom-[18%] text-center justify-center">
@@ -81,15 +81,23 @@ const Syringe = (data) => {
             <Link to="secondDose" spy={true} smooth={true} offset={-150}>
               <button
                 className="absolute bg-gradient-to-br from-[#B4F060] to-green-400 h-[5rem] right-0 focus:outline-none"
-                style={{ width: `${secondDosedPercentage}%` }}
+                style={{
+                  width: `${
+                    data != undefined ? data.secondDosedPercentage : 0
+                  }%`,
+                }}
               ></button>
             </Link>
             <Link to="firstDose" spy={true} smooth={true} offset={-150}>
               <button
                 className="absolute bg-gradient-to-br from-purple-500 to-blue-500 h-[5rem] focus:outline-none"
                 style={{
-                  width: `${firstDosedPercentage}%`,
-                  right: `${secondDosedPercentage}%`,
+                  width: `${
+                    data != undefined ? data.firstDosedPercentage : 0
+                  }%`,
+                  right: `${
+                    data != undefined ? data.secondDosedPercentage : 0
+                  }%`,
                 }}
               ></button>
             </Link>

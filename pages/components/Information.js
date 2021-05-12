@@ -6,7 +6,7 @@ const Information = (data) => {
   useEffect(() => {
     Aos.init({ duration: 700, once: true })
   }, [])
-
+  // console.log('data', data.data.goalAmount)
   // Class Styling Initialization
   const divClass =
     'p-5 sm:col-span-1 col-span-1 rounded-xl bg-gray-700 bg-opacity-20 '
@@ -17,74 +17,75 @@ const Information = (data) => {
 
   data = data.data
   // Constant Initialization
-  const goalAmount = 100000000
-  const population = 66000000
+  // const goalAmount = 100000000
+  // const population = 66000000
 
   // Total Vaccinated Number
-  const totalVaccinated =
-    data != undefined ? data[data.length - 1].totalVac : null
-  const totalVaccinatedInt =
-    totalVaccinated != null
-      ? parseInt(String(totalVaccinated).replaceAll(',', ''))
-      : null
-  const totalVaccinatedGoalPercentage =
-    totalVaccinatedInt != null
-      ? parseFloat(((totalVaccinatedInt * 100) / goalAmount).toFixed(2))
-      : null
-  const totalVaccinatedPopulationPercentage =
-    totalVaccinatedInt != null
-      ? parseFloat(((totalVaccinatedInt * 100) / (population * 2)).toFixed(2))
-      : null
+  // const totalVaccinated =
+  //   data != undefined ? data[data.length - 1].totalVac : null
+  // const totalVaccinatedInt =
+  //   totalVaccinated != null
+  //     ? parseInt(String(totalVaccinated).replaceAll(',', ''))
+  //     : null
+  // const totalVaccinatedGoalPercentage =
+  //   totalVaccinatedInt != null
+  //     ? parseFloat(((totalVaccinatedInt * 100) / goalAmount).toFixed(2))
+  //     : null
+  // const totalVaccinatedPopulationPercentage =
+  //   totalVaccinatedInt != null
+  //     ? parseFloat(((totalVaccinatedInt * 100) / (population * 2)).toFixed(2))
+  //     : null
 
   // First Dose Number
-  const firstDosed = data != undefined ? data[data.length - 1].firstDose : null
-  const firstDosedInt =
-    (firstDosed != null) & (firstDosed != undefined)
-      ? parseInt(String(firstDosed).replaceAll(',', ''))
-      : null
-  const firstDosedPercentage =
-    (firstDosedInt != null) & (firstDosedInt != undefined)
-      ? parseFloat(((firstDosedInt * 100) / population).toFixed(2))
-      : null
-  // Second Dose Number
-  const secondDosed =
-    data != undefined ? data[data.length - 1].secondDose : null
-  const secondDosedInt =
-    (secondDosed != null) & (secondDosed != undefined)
-      ? parseInt(String(secondDosed).replaceAll(',', ''))
-      : null
-  const secondDosedPercentage =
-    (secondDosedInt != null) & (secondDosedInt != undefined)
-      ? parseFloat(((secondDosedInt * 100) / population).toFixed(2))
-      : null
+  // const firstDosed = data != undefined ? data[data.length - 1].firstDose : null
+  // const firstDosedInt =
+  //   (firstDosed != null) & (firstDosed != undefined)
+  //     ? parseInt(String(firstDosed).replaceAll(',', ''))
+  //     : null
+  // const firstDosedPercentage =
+  //   (firstDosedInt != null) & (firstDosedInt != undefined)
+  //     ? parseFloat(((firstDosedInt * 100) / population).toFixed(2))
+  //     : null
+  // // Second Dose Number
+  // const secondDosed =
+  //   data != undefined ? data[data.length - 1].secondDose : null
+  // const secondDosedInt =
+  //   (secondDosed != null) & (secondDosed != undefined)
+  //     ? parseInt(String(secondDosed).replaceAll(',', ''))
+  //     : null
+  // const secondDosedPercentage =
+  //   (secondDosedInt != null) & (secondDosedInt != undefined)
+  //     ? parseFloat(((secondDosedInt * 100) / population).toFixed(2))
+  //     : null
 
   // Rate Number and Styling
-  const doesDifferenceInt =
-    data != undefined
-      ? parseInt(String(data[data.length - 1].vacRate).replaceAll(',', ''))
-      : null
-  const sign = doesDifferenceInt > 0 ? '+' : '-'
+  // const doesDifferenceInt =
+  //   data != undefined
+  //     ? parseInt(String(data[data.length - 1].vacRate).replaceAll(',', ''))
+  //     : null
+  const sign = data != undefined ? (data.doesDifferenceInt > 0 ? '+' : '-') : ''
   const doseDifference =
-    data != undefined ? sign + data[data.length - 1].vacRate : null
+    data != undefined ? sign + data.doesDifferenceInt.toLocaleString() : null
   const doseDifferenceClass =
-    doesDifferenceInt > 0
-      ? 'text-5xl p-5 text-green-400'
-      : 'text-5xl p-5 text-red-500'
-
+    data != undefined
+      ? data.doesDifferenceInt > 0
+        ? 'text-5xl p-5 text-green-400'
+        : 'text-5xl p-5 text-red-500'
+      : ''
   // Average Rate
-  let sumDifference = 0
-  for (let i = 1; i < 8; i++) {
-    sumDifference +=
-      data != undefined
-        ? parseInt(String(data[data.length - i].vacRate).replaceAll(',', ''))
-        : 0
-  }
-  const averageDoseDifference = sumDifference / 7
+  // let sumDifference = 0
+  // for (let i = 1; i < 8; i++) {
+  //   sumDifference +=
+  //     data != undefined
+  //       ? parseInt(String(data[data.length - i].vacRate).replaceAll(',', ''))
+  //       : 0
+  // }
+  // const averageDoseDifference = sumDifference / 7
 
-  // Years left
-  const yearsLeft = parseFloat(
-    ((goalAmount - totalVaccinatedInt) / averageDoseDifference / 365).toFixed(2)
-  )
+  // // Years left
+  // const yearsLeft = parseFloat(
+  //   ((goalAmount - totalVaccinatedInt) / averageDoseDifference / 365).toFixed(2)
+  // )
   return (
     <div className="max-w-2xl mx-auto">
       <div
@@ -96,7 +97,7 @@ const Information = (data) => {
           อีกเพียง
           <span className="text-yellow-400 text-7xl">
             <br />
-            {yearsLeft}{' '}
+            {data != undefined ? data.yearsLeft : null}{' '}
           </span>
           ปี
         </p>
@@ -109,7 +110,10 @@ const Information = (data) => {
       <div className="grid grid-cols-1 gap-8 p-5 text-center text-gray-100 sm:grid-cols-2 font-anuphan">
         <div className={divClass} data-aos="fade" data-aos-duration="1000">
           <p className={numberClass + ' text-blue-500'}>
-            💉 {parseInt(averageDoseDifference.toFixed()).toLocaleString()}
+            💉{' '}
+            {parseInt(
+              data != undefined ? data.averageDoseDifference.toFixed() : null
+            ).toLocaleString()}
           </p>
           <p className={textClass}>โดส/ วัน โดยเฉลี่ย</p>
         </div>
@@ -125,12 +129,14 @@ const Information = (data) => {
         >
           <div>
             <p className={numberClass}>🧬</p>
-            <p className={numberClass}>{firstDosed}</p>
+            <p className={numberClass}>
+              {data != undefined ? data.firstDosed : null}
+            </p>
             <p className={textClass}>คน ได้รับวัคซีน 1 โดส</p>
           </div>
           <div>
             <p className={numberClass + ' text-purple-500'}>
-              = {firstDosedPercentage}%
+              = {data != undefined ? data.firstDosedPercentage : null}%
             </p>
             <p className={textClass}>ของจำนวนประชากร 66 ล้านคน</p>
           </div>
@@ -143,12 +149,14 @@ const Information = (data) => {
         >
           <div>
             <p className={numberClass}>🧬 🧬</p>
-            <p className={numberClass}>{secondDosed}</p>
+            <p className={numberClass}>
+              {data != undefined ? data.secondDosed : null}
+            </p>
             <p className={textClass}>คน ได้รับวัคซีนครบ 2 โดส</p>
           </div>
           <div>
             <p className={numberClass + ' text-[#B4F060]'}>
-              = {secondDosedPercentage}%
+              = {data != undefined ? data.secondDosedPercentage : null}%
             </p>
             <p className={textClass}>ของจำนวนประชากร 66 ล้านคน</p>
           </div>
@@ -156,16 +164,23 @@ const Information = (data) => {
         <div className={bigDivClass} data-aos="fade" data-aos-duration="1000">
           <div>
             <p className={numberClass}>💪</p>
-            <p className={numberClass}>{totalVaccinated}</p>
+            <p className={numberClass}>
+              {data != undefined ? data.totalVaccinated : null}
+            </p>
             <p className={textClass}>โดส ได้ถูกฉีด</p>
           </div>
           <div>
             <p className={numberClass + ' text-yellow-400'}>
-              = {totalVaccinatedGoalPercentage}%
+              ={' '}
+              {data != undefined ? data.totalVaccinatedToGoalPercentage : null}%
             </p>
             <p className={textClass}>ของเป้าหมาย</p>
             <p className={numberClass + ' text-yellow-400'}>
-              = {totalVaccinatedPopulationPercentage}%
+              ={' '}
+              {data != undefined
+                ? data.totalVaccinatedToPopulationPercentage
+                : null}
+              %
             </p>
             <p className={textClass}>ของจำนวนประชากร</p>
           </div>

@@ -31,9 +31,73 @@ export const getStaticProps = async () => {
     secondDose: element[6],
     vacRate: element[7],
   }))
+
+  // Total Vaccinated Number
+  const goalAmount = 100000000
+  const population = 66000000
+  const totalVaccinated = data[data.length - 1].totalVac
+  const totalVaccinatedInt = parseInt(
+    String(totalVaccinated).replaceAll(',', '')
+  )
+  const totalVaccinatedToGoalPercentage = parseFloat(
+    ((totalVaccinatedInt * 100) / goalAmount).toFixed(2)
+  )
+  const totalVaccinatedToPopulationPercentage = parseFloat(
+    ((totalVaccinatedInt * 100) / (population * 2)).toFixed(2)
+  )
+  // First Dose Number
+  const firstDosed = data[data.length - 1].firstDose
+  const firstDosedInt = parseInt(String(firstDosed).replaceAll(',', ''))
+  const firstDosedPercentage = parseFloat(
+    ((firstDosedInt * 100) / population).toFixed(2)
+  )
+  // Second Dose Number
+  const secondDosed = data[data.length - 1].secondDose
+  const secondDosedInt = parseInt(String(secondDosed).replaceAll(',', ''))
+  const secondDosedPercentage = parseFloat(
+    ((secondDosedInt * 100) / population).toFixed(2)
+  )
+  // Rate Number and Styling
+  const doesDifferenceInt = parseInt(
+    String(data[data.length - 1].vacRate).replaceAll(',', '')
+  )
+  // Average Rate
+  let sumDifference = 0
+  for (let i = 1; i < 8; i++) {
+    sumDifference +=
+      data != undefined
+        ? parseInt(String(data[data.length - i].vacRate).replaceAll(',', ''))
+        : 0
+  }
+  const averageDoseDifference = sumDifference / 7
+  // Years left
+  const yearsLeft = parseFloat(
+    ((goalAmount - totalVaccinatedInt) / averageDoseDifference / 365).toFixed(2)
+  )
+  const latestDate = data[data.length - 1].date
+  const summary = {
+    goalAmount: goalAmount,
+    population: population,
+    totalVaccinated: totalVaccinated,
+    totalVaccinatedInt: totalVaccinatedInt,
+    totalVaccinatedToGoalPercentage: totalVaccinatedToGoalPercentage,
+    totalVaccinatedToPopulationPercentage:
+      totalVaccinatedToPopulationPercentage,
+    firstDosed: firstDosed,
+    firstDosedInt: firstDosedInt,
+    firstDosedPercentage: firstDosedPercentage,
+    secondDosed: secondDosed,
+    secondDosedInt: secondDosedInt,
+    secondDosedPercentage: secondDosedPercentage,
+    doesDifferenceInt: doesDifferenceInt,
+    averageDoseDifference: averageDoseDifference,
+    yearsLeft: yearsLeft,
+    latestDate: latestDate,
+  }
   return {
     props: {
       data: data,
+      summary: summary,
     },
     revalidate: 60,
   }
@@ -55,8 +119,8 @@ const Home = (data) => {
           content="Thailand's Vaccination Dashboard, by Palminister"
         ></meta>
       </Head>
-      <Syringe data={data.data} />
-      <Information data={data.data} />
+      <Syringe data={data.summary} />
+      <Information data={data.summary} />
       <DailyVaccine data={data.data} />
       <Credits />
       <Footer />
