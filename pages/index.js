@@ -36,43 +36,45 @@ export const getStaticProps = async () => {
   const goalAmount = 100000000
   const population = 66000000
   const totalVaccinated = await data[data.length - 1].totalVac
-  const totalVaccinatedInt = parseInt(
-    String(totalVaccinated).replaceAll(',', '')
-  )
-  const totalVaccinatedToGoalPercentage = parseFloat(
-    (
-      (parseInt(String(totalVaccinated).replaceAll(',', '')) * 100) /
-      goalAmount
-    ).toFixed(2)
-  )
-  const totalVaccinatedToPopulationPercentage = parseFloat(
-    (
-      (parseInt(String(totalVaccinated).replaceAll(',', '')) * 100) /
-      (population * 2)
-    ).toFixed(2)
-  )
+  const totalVaccinatedInt =
+    totalVaccinated != undefined
+      ? parseInt(String(totalVaccinated).replaceAll(',', ''))
+      : null
+  const totalVaccinatedToGoalPercentage =
+    totalVaccinatedInt != undefined
+      ? parseFloat(((totalVaccinatedInt * 100) / goalAmount).toFixed(2))
+      : null
+  const totalVaccinatedToPopulationPercentage =
+    (totalVaccinatedInt != undefined) & (totalVaccinatedInt != null)
+      ? parseFloat(((totalVaccinatedInt * 100) / (population * 2)).toFixed(2))
+      : null
   // First Dose Number
   const firstDosed = await data[data.length - 1].firstDose
-  const firstDosedInt = parseInt(String(firstDosed).replaceAll(',', ''))
-  const firstDosedPercentage = parseFloat(
-    (
-      (parseInt(String(firstDosed).replaceAll(',', '')) * 100) /
-      population
-    ).toFixed(2)
-  )
+  const firstDosedInt =
+    firstDosed != undefined
+      ? parseInt(String(firstDosed).replaceAll(',', ''))
+      : null
+  const firstDosedPercentage =
+    (firstDosedInt != undefined) & (firstDosedInt != null)
+      ? parseFloat(((firstDosedInt * 100) / population).toFixed(2))
+      : null
   // Second Dose Number
   const secondDosed = await data[data.length - 1].secondDose
-  const secondDosedInt = parseInt(String(secondDosed).replaceAll(',', ''))
-  const secondDosedPercentage = parseFloat(
-    (
-      (parseInt(String(secondDosed).replaceAll(',', '')) * 100) /
-      population
-    ).toFixed(2)
-  )
+  const secondDosedInt =
+    secondDosed != undefined
+      ? parseInt(String(secondDosed).replaceAll(',', ''))
+      : null
+  const secondDosedPercentage =
+    (secondDosedInt != undefined) & (secondDosedInt != null)
+      ? parseFloat(((secondDosedInt * 100) / population).toFixed(2))
+      : null
   // Rate Number and Styling
-  const doesDifferenceInt = parseInt(
-    String(await data[data.length - 1].vacRate).replaceAll(',', '')
-  )
+  const doesDifferenceInt =
+    data != undefined
+      ? parseInt(
+          String(await data[data.length - 1].vacRate).replaceAll(',', '')
+        )
+      : null
   // Average Rate
   let sumDifference = 0
   for (let i = 1; i < 8; i++) {
@@ -88,7 +90,7 @@ export const getStaticProps = async () => {
   const yearsLeft = parseFloat(
     ((goalAmount - totalVaccinatedInt) / averageDoseDifference / 365).toFixed(2)
   )
-  const latestDate = await data[data.length - 1].date
+  const latestDate = data != undefined ? data[data.length - 1].date : null
   const summary = {
     goalAmount: goalAmount,
     population: population,
