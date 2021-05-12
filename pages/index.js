@@ -38,7 +38,7 @@ export const getStaticProps = async () => {
   const totalVaccinated = await data[data.length - 1].totalVac
   const totalVaccinatedInt =
     totalVaccinated != undefined
-      ? parseInt(String(totalVaccinated).replaceAll(',', ''))
+      ? parseInt(String(totalVaccinated).split(',').join(''))
       : null
   const totalVaccinatedToGoalPercentage =
     totalVaccinatedInt != undefined
@@ -52,7 +52,7 @@ export const getStaticProps = async () => {
   const firstDosed = await data[data.length - 1].firstDose
   const firstDosedInt =
     firstDosed != undefined
-      ? parseInt(String(firstDosed).replaceAll(',', ''))
+      ? parseInt(String(firstDosed).split(',').join(''))
       : null
   const firstDosedPercentage =
     (firstDosedInt != undefined) & (firstDosedInt != null)
@@ -62,7 +62,7 @@ export const getStaticProps = async () => {
   const secondDosed = await data[data.length - 1].secondDose
   const secondDosedInt =
     secondDosed != undefined
-      ? parseInt(String(secondDosed).replaceAll(',', ''))
+      ? parseInt(String(secondDosed).split(',').join(''))
       : null
   const secondDosedPercentage =
     (secondDosedInt != undefined) & (secondDosedInt != null)
@@ -72,7 +72,9 @@ export const getStaticProps = async () => {
   const doesDifferenceInt =
     data != undefined
       ? parseInt(
-          String(await data[data.length - 1].vacRate).replaceAll(',', '')
+          String(await data[data.length - 1].vacRate)
+            .split(',')
+            .join('')
         )
       : null
   // Average Rate
@@ -81,7 +83,9 @@ export const getStaticProps = async () => {
     sumDifference +=
       data != undefined
         ? parseInt(
-            String(await data[data.length - i].vacRate).replaceAll(',', '')
+            String(await data[data.length - i].vacRate)
+              .split(',')
+              .join('')
           )
         : 0
   }
