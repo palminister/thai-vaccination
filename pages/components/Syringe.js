@@ -7,7 +7,7 @@ const Syringe = (data) => {
   const firstDosed = data != undefined ? data[data.length - 1].firstDose : null
   const firstDosedInt =
     (firstDosed != null) & (firstDosed != undefined)
-      ? parseInt(firstDosed.replaceAll(',', ''))
+      ? parseInt(String(firstDosed).replaceAll(',', ''))
       : null
   const firstDosedPercentage =
     (firstDosedInt != null) & (firstDosedInt != undefined)
@@ -18,7 +18,7 @@ const Syringe = (data) => {
     data != undefined ? data[data.length - 1].secondDose : null
   const secondDosedInt =
     (secondDosed != null) & (secondDosed != undefined)
-      ? parseInt(secondDosed.replaceAll(',', ''))
+      ? parseInt(String(secondDosed).replaceAll(',', ''))
       : null
   const secondDosedPercentage =
     (secondDosedInt != null) & (secondDosedInt != undefined)

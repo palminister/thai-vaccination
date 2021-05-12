@@ -25,7 +25,7 @@ const Information = (data) => {
     data != undefined ? data[data.length - 1].totalVac : null
   const totalVaccinatedInt =
     totalVaccinated != null
-      ? parseInt(totalVaccinated.replaceAll(',', ''))
+      ? parseInt(String(totalVaccinated).replaceAll(',', ''))
       : null
   const totalVaccinatedGoalPercentage =
     totalVaccinatedInt != null
@@ -39,25 +39,29 @@ const Information = (data) => {
   // First Dose Number
   const firstDosed = data != undefined ? data[data.length - 1].firstDose : null
   const firstDosedInt =
-    firstDosed != null ? parseInt(firstDosed.replaceAll(',', '')) : null
+    (firstDosed != null) & (firstDosed != undefined)
+      ? parseInt(String(firstDosed).replaceAll(',', ''))
+      : null
   const firstDosedPercentage =
-    firstDosedInt != null
+    (firstDosedInt != null) & (firstDosedInt != undefined)
       ? parseFloat(((firstDosedInt * 100) / population).toFixed(2))
       : null
   // Second Dose Number
   const secondDosed =
     data != undefined ? data[data.length - 1].secondDose : null
   const secondDosedInt =
-    secondDosed != null ? parseInt(secondDosed.replaceAll(',', '')) : null
+    (secondDosed != null) & (secondDosed != undefined)
+      ? parseInt(String(secondDosed).replaceAll(',', ''))
+      : null
   const secondDosedPercentage =
-    secondDosedInt != null
+    (secondDosedInt != null) & (secondDosedInt != undefined)
       ? parseFloat(((secondDosedInt * 100) / population).toFixed(2))
       : null
 
   // Rate Number and Styling
   const doesDifferenceInt =
     data != undefined
-      ? parseInt(data[data.length - 1].vacRate.replaceAll(',', ''))
+      ? parseInt(String(data[data.length - 1].vacRate).replaceAll(',', ''))
       : null
   const sign = doesDifferenceInt > 0 ? '+' : '-'
   const doseDifference =
@@ -72,7 +76,7 @@ const Information = (data) => {
   for (let i = 1; i < 8; i++) {
     sumDifference +=
       data != undefined
-        ? parseInt(data[data.length - i].vacRate.replaceAll(',', ''))
+        ? parseInt(String(data[data.length - i].vacRate).replaceAll(',', ''))
         : 0
   }
   const averageDoseDifference = sumDifference / 7
