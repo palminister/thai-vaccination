@@ -3,6 +3,7 @@ const { google } = require('googleapis')
 import Syringe from './components/Syringe'
 import Information from './components/Information'
 import DailyVaccine from './components/DailyVaccine'
+import ThailandMap from './components/ThailandMap'
 import Credits from './components/Credits'
 import Footer from './components/Footer'
 
@@ -114,16 +115,33 @@ export const getStaticProps = async () => {
     yearsLeft: yearsLeft,
     latestDate: latestDate,
   }
+  //  Map Data
+  const provinceRaw = await sheets.spreadsheets.values.get({
+    spreadsheetId: process.env.SPREADSHEET_ID,
+    range: 'Raw_Data_Provinces!A:I',
+  })
+  const provinceData = provinceRaw.data.values.slice(3).map((element) => ({
+    region: element[0],
+    provinceTH: element[1],
+    province: element[2],
+    totalPopulation: element[3],
+    totalDose: element[4],
+    firstDose: element[5],
+    secondDose: element[6],
+    relativePercentage: parseFloat(String(element[8]).slice(0, -1)),
+  }))
   return {
     props: {
       data: data,
       summary: summary,
+      provinceData: provinceData,
     },
     revalidate: 60,
   }
 }
 
 const Home = (data) => {
+  // console.log(data)
   if (!data) return <h1 className="font-sourcecode">404 This Page is Dead</h1>
   return (
     <div className="bg-gradient-to-br from-gray-900 to-black">
@@ -142,6 +160,7 @@ const Home = (data) => {
       <Syringe data={data.summary} />
       <Information data={data.summary} />
       <DailyVaccine data={data.data} />
+      <ThailandMap data={data.provinceData} />
       <Credits />
       <Footer />
     </div>
