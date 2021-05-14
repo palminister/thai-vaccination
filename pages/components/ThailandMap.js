@@ -160,9 +160,9 @@ const ThailandMap = (data) => {
             <div className="flex-1 bg-white"> </div>
             <div className="flex-1 bg-green-50"> </div>
             <div className="flex-1 bg-green-100"> </div>
-            <div className="flex-1 bg-green-200">. </div>
-            <div className="flex-1 bg-green-300">. </div>
-            <div className="flex-1 bg-green-400">. </div>
+            <div className="flex-1 bg-green-200"> </div>
+            <div className="flex-1 bg-green-300"> </div>
+            <div className="flex-1 text-green-400 bg-green-400">. </div>
           </div>
           <div className="flex py-3 text-center text-white">
             <div className="flex-1">{'<=2%'}</div>
