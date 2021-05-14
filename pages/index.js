@@ -146,7 +146,22 @@ const Home = (data) => {
   return (
     <div className="bg-gradient-to-br from-gray-900 to-black">
       <Head>
-        <title>Thai Vaccination</title>
+        <title>Thailand's Vaccination</title>
+        <meta
+          property="og:url"
+          content="https://thai-vaccination.vercel.app/"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Thailand's Vaccination Dashboard" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          property="og:description"
+          content="This is a dashboard that monitors the vaccination process in Thailand. It is determined to visualize the hope that Thais can hold on to during this COVID-19 pandemic."
+        />
+        <meta
+          property="og:image"
+          content="https://palminister-portfolio.vercel.app/_next/image?url=%2Fmysite-thumbnail%2Fthai-vaccination.png&w=3840&q=75"
+        />
         <link
           rel="icon"
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💉</text></svg>"
