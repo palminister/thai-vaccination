@@ -17,7 +17,7 @@ const Information = (data) => {
   data = data.data
 
   // Rate Number Styling
-  const sign = data != undefined ? (data.doesDifferenceInt > 0 ? '+' : '-') : ''
+  const sign = data != undefined ? (data.doesDifferenceInt > 0 ? '+' : '') : ''
   const doseDifference =
     data != undefined ? sign + data.doesDifferenceInt.toLocaleString() : null
   const doseDifferenceClass =
@@ -50,16 +50,31 @@ const Information = (data) => {
       <div className="grid grid-cols-1 gap-8 p-5 text-center text-gray-100 sm:grid-cols-2 font-anuphan">
         <div className={divClass} data-aos="fade" data-aos-duration="1000">
           <p className={numberClass + ' text-blue-500'}>
-            💉{' '}
             {parseInt(
               data != undefined ? data.averageDoseDifference.toFixed() : null
             ).toLocaleString()}
           </p>
-          <p className={textClass}>โดส/ วัน โดยเฉลี่ย</p>
+          <p className={textClass + ' pb-5'}>โดส ได้ถูกฉีดโดยเฉลี่ยใน 7 วัน</p>
         </div>
         <div className={divClass} data-aos="fade" data-aos-duration="1000">
-          <p className={doseDifferenceClass}>{doseDifference}</p>
-          <p className={textClass}>โดส เทียบกับวันก่อนหน้า</p>
+          <p className={numberClass + ' text-green-400'}>
+            {data != undefined ? data.vacRate : null}
+          </p>
+          <p className={textClass + ' pb-5'}>โดส ได้ถูกฉีดวันนี้</p>
+        </div>
+        <div
+          className={bigDivClass}
+          id="firstDose"
+          data-aos="fade"
+          data-aos-duration="1000"
+        >
+          <div>
+            <p className="text-5xl">💉</p>
+            <p className={doseDifferenceClass}>
+              {data != undefined ? doseDifference : null}
+            </p>
+            <p className={textClass}>โดส เทียบกับวันก่อนหน้า</p>
+          </div>
         </div>
         <div
           className={bigDivClass}

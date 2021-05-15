@@ -69,11 +69,17 @@ export const getStaticProps = async () => {
     (secondDosedInt != undefined) & (secondDosedInt != null)
       ? parseFloat(((secondDosedInt * 100) / population).toFixed(2))
       : null
-  // Rate Number and Styling
+  // Rate Number
+  const vacRate = data != undefined ? await data[data.length - 1].vacRate : null
   const doesDifferenceInt =
     data != undefined
       ? parseInt(
-          String(await data[data.length - 1].vacRate)
+          String(data[data.length - 1].vacRate)
+            .split(',')
+            .join('')
+        ) -
+        parseInt(
+          String(data[data.length - 2].vacRate)
             .split(',')
             .join('')
         )
@@ -110,6 +116,7 @@ export const getStaticProps = async () => {
     secondDosed: secondDosed,
     secondDosedInt: secondDosedInt,
     secondDosedPercentage: secondDosedPercentage,
+    vacRate: vacRate,
     doesDifferenceInt: doesDifferenceInt,
     averageDoseDifference: averageDoseDifference,
     yearsLeft: yearsLeft,
@@ -172,6 +179,7 @@ const Home = (data) => {
           content="Thailand's Vaccination Dashboard, by Palminister"
         ></meta>
       </Head>
+      {/* <div className="test">Hi</div> */}
       <Syringe data={data.summary} />
       <Information data={data.summary} />
       <DailyVaccine data={data.data} />

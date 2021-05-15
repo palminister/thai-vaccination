@@ -4,7 +4,7 @@ const Syringe = (data) => {
   data = data.data
   return (
     <div className="flex w-screen h-screen overflow-hidden">
-      <div className="absolute w-[100%] p-5 font-anuphan top-[22%] text-center">
+      <div className="absolute w-[100%] p-5 font-anuphan text-center mainquestion">
         <p className="text-5xl text-white">
           คนไทยฉีดวัคซีน<span className="text-yellow-400">ถึงไหนแล้ว</span> ?
         </p>
@@ -13,7 +13,7 @@ const Syringe = (data) => {
           {data != undefined ? data.latestDate : null}, 2021
         </p>
       </div>
-      <div className="absolute p-5 text-lg w-screen text-white font-anuphan bottom-[18%] text-center justify-center">
+      <div className="absolute justify-center w-screen p-5 text-lg text-center text-white font-anuphan mainexplanation">
         <div className="relative max-w-lg m-auto">
           <div className="flex flex-wrap justify-center">
             <Link

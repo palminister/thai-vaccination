@@ -34,3 +34,19 @@ a {
   font-style: normal;
   font-display: swap;
 }
+@media only screen and (max-height: 700px) {
+  .mainquestion {
+    top: 12%;
+  }
+  .mainexplanation {
+    bottom: 8%;
+  }
+}
+@media only screen and (min-height: 700px) {
+  .mainquestion {
+    top: 22%;
+  }
+  .mainexplanation {
+    bottom: 18%;
+  }
+}
