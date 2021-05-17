@@ -6,7 +6,7 @@ import DailyVaccine from './components/DailyVaccine'
 import ThailandMap from './components/ThailandMap'
 import Credits from './components/Credits'
 import Footer from './components/Footer'
-
+import * as emoji from './data/emoji.json'
 export const getStaticProps = async () => {
   const scopes = ['https://www.googleapis.com/auth/spreadsheets.readonly']
   const fixedKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY.replace(
@@ -169,10 +169,7 @@ const Home = (data) => {
           property="og:image"
           content="https://palminister-portfolio.vercel.app/_next/image?url=%2Fmysite-thumbnail%2Fthai-vaccination.png&w=3840&q=75"
         />
-        <link
-          rel="icon"
-          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💉</text></svg>"
-        ></link>
+        <link rel="icon" href={emoji.syringe} />
         <link rel="preconnect" href="https://api.mapbox.com"></link>
         <meta
           name="description"

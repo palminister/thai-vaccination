@@ -124,8 +124,8 @@ const ThailandMap = (data) => {
               console.log(error)
             }
             d3.select(event.currentTarget)
-              .style('stroke', '#10B981')
-              .style('stroke-width', 1.2)
+              .style('stroke', '#EC4899')
+              .style('stroke-width', 1.5)
           })
           .on('mousemove', function () {
             tooltip

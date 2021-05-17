@@ -1,8 +1,10 @@
 import { useEffect } from 'react'
+import Image from 'next/image'
 import Aos from 'aos'
 import 'aos/dist/aos.css'
 
 const Information = (data) => {
+  const emoji = require('../data/emoji.json')
   useEffect(() => {
     Aos.init({ duration: 700, once: true })
   }, [])
@@ -15,7 +17,6 @@ const Information = (data) => {
   const textClass = 'text-lg font-thin'
 
   data = data.data
-
   // Rate Number Styling
   const sign = data != undefined ? (data.doesDifferenceInt > 0 ? '+' : '') : ''
   const doseDifference =
@@ -69,7 +70,15 @@ const Information = (data) => {
           data-aos-duration="1000"
         >
           <div>
-            <p className="text-5xl">💉</p>
+            <div className="flex justify-center p-2">
+              <Image
+                src={emoji.syringe}
+                alt="dna"
+                width={60}
+                height={60}
+                priority="true"
+              ></Image>
+            </div>
             <p className={doseDifferenceClass}>
               {data != undefined ? doseDifference : null}
             </p>
@@ -83,7 +92,15 @@ const Information = (data) => {
           data-aos-duration="1000"
         >
           <div>
-            <p className={numberClass}>🧬</p>
+            <div className="flex justify-center p-5">
+              <Image
+                src={emoji.dna}
+                alt="dna"
+                width={50}
+                height={50}
+                priority="true"
+              ></Image>
+            </div>
             <p className={numberClass}>
               {data != undefined ? data.firstDosed : null}
             </p>
@@ -103,7 +120,23 @@ const Information = (data) => {
           data-aos-duration="1000"
         >
           <div>
-            <p className={numberClass}>🧬 🧬</p>
+            <div className="flex justify-center p-5">
+              <Image
+                src={emoji.dna}
+                alt="dna"
+                width={50}
+                height={50}
+                priority="true"
+              ></Image>
+              <span className="w-3"></span>
+              <Image
+                src={emoji.dna}
+                alt="dna"
+                width={50}
+                height={50}
+                priority="true"
+              ></Image>
+            </div>
             <p className={numberClass}>
               {data != undefined ? data.secondDosed : null}
             </p>
@@ -118,7 +151,15 @@ const Information = (data) => {
         </div>
         <div className={bigDivClass} data-aos="fade" data-aos-duration="1000">
           <div>
-            <p className={numberClass}>💪</p>
+            <div className="flex justify-center p-5">
+              <Image
+                src={emoji.biceps}
+                alt="dna"
+                width={50}
+                height={50}
+                priority="true"
+              ></Image>
+            </div>
             <p className={numberClass}>
               {data != undefined ? data.totalVaccinated : null}
             </p>

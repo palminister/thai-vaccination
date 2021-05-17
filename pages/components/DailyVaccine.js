@@ -128,6 +128,9 @@ const DailyVaccine = (data) => {
              จำนวนโดส: ${i.vacRate}`
           )
           .style('visibility', 'visible')
+        d3.select(event.currentTarget)
+          .style('stroke', 'white')
+          .style('stroke-width', 1.2)
         // d3.select(this).attr('fill', '#C7D2FE')
       })
       .on('mousemove', function () {
@@ -138,6 +141,7 @@ const DailyVaccine = (data) => {
       .on('mouseout', function () {
         tooltip.html(``).style('visibility', 'hidden')
         d3.select(this).attr('fill', 'url(#temperature-gradient)')
+        d3.select(event.currentTarget).style('stroke', 'none')
       })
 
     // Exit
@@ -152,12 +156,11 @@ const DailyVaccine = (data) => {
 
   return (
     <div className="w-screen px-5 pt-3 pb-10" data-aos="fade">
-      <div className="w-full rounded-xl bg-gray-700 bg-opacity-20 h-1/2 p-3 sm:p-10 lg:px-40">
+      <div className="w-full p-3 bg-gray-700 rounded-xl bg-opacity-20 h-1/2 sm:p-10 lg:px-40">
         <div className="flex w-full">
-          <div className="m-auto text-gray-200 font-anuphan text-2xl p-5 text-center">
+          <div className="p-5 m-auto text-2xl text-center text-gray-200 font-anuphan">
             <p>
-              {' '}
-              💉 อัตราการฉีดวัคซีน <br className="block sm:hidden" />
+              อัตราการฉีดวัคซีน <br className="block sm:hidden" />
               (โดส/ วัน)
             </p>
           </div>
