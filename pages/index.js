@@ -7,6 +7,7 @@ import ThailandMap from './components/ThailandMap'
 import Credits from './components/Credits'
 import Footer from './components/Footer'
 import * as emoji from './data/emoji.json'
+
 export const getStaticProps = async () => {
   const scopes = ['https://www.googleapis.com/auth/spreadsheets.readonly']
   const fixedKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY.replace(

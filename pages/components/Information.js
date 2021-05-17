@@ -63,12 +63,7 @@ const Information = (data) => {
           </p>
           <p className={textClass + ' pb-5'}>โดส ได้ถูกฉีดวันนี้</p>
         </div>
-        <div
-          className={bigDivClass}
-          id="firstDose"
-          data-aos="fade"
-          data-aos-duration="1000"
-        >
+        <div className={bigDivClass} data-aos="fade" data-aos-duration="1000">
           <div>
             <div className="flex justify-center p-2">
               <Image
