@@ -18,12 +18,15 @@ const Information = (data) => {
 
   data = data.data
   // Rate Number Styling
-  const sign = data != undefined ? (data.doesDifferenceInt > 0 ? '+' : '') : ''
-  const doseDifference =
-    data != undefined ? sign + data.doesDifferenceInt.toLocaleString() : null
-  const doseDifferenceClass =
+  const sign =
+    data != undefined ? (data.doseCompareToYesterday > 0 ? '+' : '') : ''
+  const doseCompareToYesterday =
     data != undefined
-      ? data.doesDifferenceInt > 0
+      ? sign + data.doseCompareToYesterday.toLocaleString()
+      : null
+  const doseCompareToYesterdayClass =
+    data != undefined
+      ? data.doseCompareToYesterday > 0
         ? 'text-5xl p-5 text-green-400'
         : 'text-5xl p-5 text-red-500'
       : ''
@@ -52,14 +55,16 @@ const Information = (data) => {
         <div className={divClass} data-aos="fade" data-aos-duration="1000">
           <p className={numberClass + ' text-blue-500'}>
             {parseInt(
-              data != undefined ? data.averageDoseDifference.toFixed() : null
+              data != undefined ? data.averageVaccinationRate.toFixed() : null
             ).toLocaleString()}
           </p>
           <p className={textClass + ' pb-5'}>โดส ได้ถูกฉีดโดยเฉลี่ยใน 7 วัน</p>
         </div>
         <div className={divClass} data-aos="fade" data-aos-duration="1000">
           <p className={numberClass + ' text-green-400'}>
-            {data != undefined ? data.vacRate : null}
+            {data != undefined
+              ? data.todayVaccinationRate.toLocaleString()
+              : null}
           </p>
           <p className={textClass + ' pb-5'}>โดส ได้ถูกฉีดวันนี้</p>
         </div>
@@ -74,8 +79,8 @@ const Information = (data) => {
                 priority="true"
               ></Image>
             </div>
-            <p className={doseDifferenceClass}>
-              {data != undefined ? doseDifference : null}
+            <p className={doseCompareToYesterdayClass}>
+              {data != undefined ? doseCompareToYesterday : null}
             </p>
             <p className={textClass}>โดส เทียบกับวันก่อนหน้า</p>
           </div>
@@ -97,13 +102,17 @@ const Information = (data) => {
               ></Image>
             </div>
             <p className={numberClass}>
-              {data != undefined ? data.firstDosed : null}
+              {data != undefined ? data.firstDose.toLocaleString() : null}
             </p>
             <p className={textClass}>คน ได้รับวัคซีน 1 โดส</p>
           </div>
           <div>
             <p className={numberClass + ' text-purple-500'}>
-              = {data != undefined ? data.firstDosedPercentage : null}%
+              ={' '}
+              {data != undefined
+                ? data.firstDosePercentage.toLocaleString()
+                : null}
+              %
             </p>
             <p className={textClass}>ของจำนวนประชากร 66 ล้านคน</p>
           </div>
@@ -133,13 +142,17 @@ const Information = (data) => {
               ></Image>
             </div>
             <p className={numberClass}>
-              {data != undefined ? data.secondDosed : null}
+              {data != undefined ? data.secondDose.toLocaleString() : null}
             </p>
             <p className={textClass}>คน ได้รับวัคซีนครบ 2 โดส</p>
           </div>
           <div>
             <p className={numberClass + ' text-[#B4F060]'}>
-              = {data != undefined ? data.secondDosedPercentage : null}%
+              ={' '}
+              {data != undefined
+                ? data.secondDosePercentage.toLocaleString()
+                : null}
+              %
             </p>
             <p className={textClass}>ของจำนวนประชากร 66 ล้านคน</p>
           </div>
@@ -156,20 +169,23 @@ const Information = (data) => {
               ></Image>
             </div>
             <p className={numberClass}>
-              {data != undefined ? data.totalVaccinated : null}
+              {data != undefined ? data.totalVaccinated.toLocaleString() : null}
             </p>
             <p className={textClass}>โดส ได้ถูกฉีด</p>
           </div>
           <div>
             <p className={numberClass + ' text-yellow-400'}>
               ={' '}
-              {data != undefined ? data.totalVaccinatedToGoalPercentage : null}%
+              {data != undefined
+                ? data.totalVaccinatedToGoalPercentage.toLocaleString()
+                : null}
+              %
             </p>
             <p className={textClass}>ของเป้าหมาย</p>
             <p className={numberClass + ' text-yellow-400'}>
               ={' '}
               {data != undefined
-                ? data.totalVaccinatedToPopulationPercentage
+                ? data.totalVaccinatedToPopulationPercentage.toLocaleString()
                 : null}
               %
             </p>

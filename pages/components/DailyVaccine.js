@@ -112,11 +112,11 @@ const DailyVaccine = (data) => {
         'd',
         (d) =>
           `
-        M${x(d.date)},${y(parseInt(d.vacRate.replaceAll(',', ''))) + ry}
+        M${x(d.date)},${y(d.vacRate) + ry}
         a${rx},${ry} 0 0 1 ${rx},${-ry}
         h${x.bandwidth() - 2 * rx}
         a${rx},${ry} 0 0 1 ${rx},${ry}
-        v${height - y(parseInt(d.vacRate.replaceAll(',', '')))}
+        v${height - y(d.vacRate)}
         h${-x.bandwidth()}Z
       `
       )
@@ -125,7 +125,7 @@ const DailyVaccine = (data) => {
         tooltip
           .html(
             `วันที่: ${i.date}      <br/>
-             จำนวนโดส: ${i.vacRate}`
+             จำนวนโดส: ${i.vacRate.toLocaleString()}`
           )
           .style('visibility', 'visible')
         d3.select(event.currentTarget)

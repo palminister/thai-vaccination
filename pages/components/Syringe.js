@@ -61,7 +61,7 @@ const Syringe = (data) => {
                 className="absolute bg-gradient-to-br from-[#B4F060] to-green-400 h-[5rem] right-0 focus:outline-none"
                 style={{
                   width: `${
-                    data != undefined ? data.secondDosedPercentage : 0
+                    data != undefined ? data.secondDosePercentage : 0
                   }%`,
                 }}
               ></button>
@@ -70,11 +70,9 @@ const Syringe = (data) => {
               <button
                 className="absolute bg-gradient-to-br from-purple-500 to-blue-500 h-[5rem] focus:outline-none"
                 style={{
-                  width: `${
-                    data != undefined ? data.firstDosedPercentage : 0
-                  }%`,
+                  width: `${data != undefined ? data.firstDosePercentage : 0}%`,
                   right: `${
-                    data != undefined ? data.secondDosedPercentage : 0
+                    data != undefined ? data.secondDosePercentage : 0
                   }%`,
                 }}
               ></button>
