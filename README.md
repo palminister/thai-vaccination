@@ -24,24 +24,24 @@ Get the amount of vaccination doses administered on each day from 27 Feb 2021 un
 
 #### Response
 
-```json
+```jsonc
 [
-    {
-        "date": "27 Feb",
-        "totalVac": 0,
-        "firstDose": 0,
-        "secondDose": 0,
-        "vacRate": 0
-    },
-    ...
-    {
-        "date": "24 May",
-        "totalVac": 3024313,
-        "firstDose": 2044123,
-        "secondDose": 980190,
-        "vacRate": 113649
-    }
-
+  {
+    "date": "27 Feb",
+    "totalVac": 0,
+    "firstDose": 0,
+    "secondDose": 0,
+    "vacRate": 0
+  },
+  // ...
+  {
+    "date": "24 May",
+    "totalVac": 3024313,
+    "firstDose": 2044123,
+    "secondDose": 980190,
+    "vacRate": 113649
+  }
+]
 ```
 
 #### Data Dictionary
@@ -64,29 +64,30 @@ Get the **current** amount of vaccination doses administered in each province.
 
 #### Response
 
-```json
+```jsonc
 [
-    {
-        "region": "N",
-        "provinceTH": "เชียงราย",
-        "province": "Chiang Rai",
-        "totalPopulation": 1298304,
-        "totalDose": 24346,
-        "firstDose": 14170,
-        "secondDose": 10176,
-        "relativePercentage": 0.94
-    },
-    ...
-    {
-        "region": "",
-        "provinceTH": "รวม",
-        "province": "",
-        "totalPopulation": 66920716,
-        "totalDose": 2900473,
-        "firstDose": 1931365,
-        "secondDose": 969108,
-        "relativePercentage": 2.17
-    }
+  {
+    "region": "N",
+    "provinceTH": "เชียงราย",
+    "province": "Chiang Rai",
+    "totalPopulation": 1298304,
+    "totalDose": 24346,
+    "firstDose": 14170,
+    "secondDose": 10176,
+    "relativePercentage": 0.94
+  },
+  // ...
+  {
+    "region": "",
+    "provinceTH": "รวม",
+    "province": "",
+    "totalPopulation": 66920716,
+    "totalDose": 2900473,
+    "firstDose": 1931365,
+    "secondDose": 969108,
+    "relativePercentage": 2.17
+  }
+]
 ```
 
 #### Data Dictionary
@@ -112,7 +113,7 @@ Get the vaccination summary info shown in the dashboard
 
 #### Response
 
-```json
+```jsonc
 {
   "vaccineGoalAmount": 100000000,
   "thaiPopulation": 66000000,
