@@ -52,38 +52,30 @@ const Information = (data) => {
         </p>
       </div>
       <div className="grid grid-cols-1 gap-8 p-5 text-center text-gray-100 sm:grid-cols-2 font-anuphan">
-        <div className={divClass} data-aos="fade" data-aos-duration="1000">
-          <p className={numberClass + ' text-blue-500'}>
-            {parseInt(
-              data != undefined ? data.averageVaccinationRate.toFixed() : null
-            ).toLocaleString()}
-          </p>
-          <p className={textClass + ' pb-5'}>โดส ได้ถูกฉีดโดยเฉลี่ยใน 7 วัน</p>
+        <div className={bigDivClass} data-aos="fade" data-aos-duration="1000">
+          <div>
+            <div className="flex justify-center"></div>
+            <p className={numberClass + ' text-blue-500'}>
+              {parseInt(
+                data != undefined ? data.averageVaccinationRate.toFixed() : null
+              ).toLocaleString()}
+            </p>
+            <p className={textClass}>โดส ได้ถูกฉีดโดยเฉลี่ยใน 7 วัน</p>
+          </div>
         </div>
         <div className={divClass} data-aos="fade" data-aos-duration="1000">
           <p className={numberClass + ' text-green-400'}>
             {data != undefined
-              ? data.todayVaccinationRate.toLocaleString()
+              ? data.latestVaccinationRate.toLocaleString()
               : null}
           </p>
           <p className={textClass + ' pb-5'}>โดส ได้ถูกฉีดวันนี้</p>
         </div>
-        <div className={bigDivClass} data-aos="fade" data-aos-duration="1000">
-          <div>
-            <div className="flex justify-center p-2">
-              <Image
-                src={emoji.syringe}
-                alt="dna"
-                width={60}
-                height={60}
-                priority="true"
-              ></Image>
-            </div>
-            <p className={doseCompareToYesterdayClass}>
-              {data != undefined ? doseCompareToYesterday : null}
-            </p>
-            <p className={textClass}>โดส เทียบกับวันก่อนหน้า</p>
-          </div>
+        <div className={divClass} data-aos="fade" data-aos-duration="1000">
+          <p className={doseCompareToYesterdayClass}>
+            {data != undefined ? doseCompareToYesterday : null}
+          </p>
+          <p className={textClass}>โดส เทียบกับวันก่อนหน้า</p>
         </div>
         <div
           className={bigDivClass}
@@ -169,7 +161,9 @@ const Information = (data) => {
               ></Image>
             </div>
             <p className={numberClass}>
-              {data != undefined ? data.totalVaccinated.toLocaleString() : null}
+              {data != undefined
+                ? data.totalVaccination.toLocaleString()
+                : null}
             </p>
             <p className={textClass}>โดส ได้ถูกฉีด</p>
           </div>
@@ -177,7 +171,7 @@ const Information = (data) => {
             <p className={numberClass + ' text-yellow-400'}>
               ={' '}
               {data != undefined
-                ? data.totalVaccinatedToGoalPercentage.toLocaleString()
+                ? data.totalVaccinationToGoalPercentage.toLocaleString()
                 : null}
               %
             </p>
@@ -185,7 +179,7 @@ const Information = (data) => {
             <p className={numberClass + ' text-yellow-400'}>
               ={' '}
               {data != undefined
-                ? data.totalVaccinatedToPopulationPercentage.toLocaleString()
+                ? data.totalVaccinationToPopulationPercentage.toLocaleString()
                 : null}
               %
             </p>

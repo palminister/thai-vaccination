@@ -77,15 +77,15 @@ const ThailandMap = (data) => {
               if (provincePercentage <= 2) {
                 return 'white'
               } else if (provincePercentage <= 4) {
-                return '#ECFDF5'
-              } else if (provincePercentage <= 6) {
                 return '#D1FAE5'
-              } else if (provincePercentage <= 8) {
+              } else if (provincePercentage <= 6) {
                 return '#A7F3D0'
-              } else if (provincePercentage <= 10) {
+              } else if (provincePercentage <= 8) {
                 return '#6EE7B7'
-              } else {
+              } else if (provincePercentage <= 10) {
                 return '#34D399'
+              } else {
+                return '#10B981'
               }
             } catch (error) {
               console.log(error)
@@ -125,7 +125,7 @@ const ThailandMap = (data) => {
             }
             d3.select(event.currentTarget)
               .style('stroke', '#EC4899')
-              .style('stroke-width', 1.5)
+              .style('stroke-width', 2)
           })
           .on('mousemove', function () {
             tooltip
@@ -158,11 +158,11 @@ const ThailandMap = (data) => {
         <div id="legend" className="max-w-lg m-auto my-2 font-anuphan">
           <div className="flex m-auto">
             <div className="flex-1 bg-white"> </div>
-            <div className="flex-1 bg-green-50"> </div>
             <div className="flex-1 bg-green-100"> </div>
             <div className="flex-1 bg-green-200"> </div>
             <div className="flex-1 bg-green-300"> </div>
-            <div className="flex-1 text-green-400 bg-green-400">. </div>
+            <div className="flex-1 bg-green-400"> </div>
+            <div className="flex-1 text-green-500 bg-green-500">. </div>
           </div>
           <div className="flex py-3 text-center text-white">
             <div className="flex-1">{'<=2%'}</div>

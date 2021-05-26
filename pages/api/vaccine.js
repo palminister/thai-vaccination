@@ -28,6 +28,17 @@ export async function getVaccineSheet() {
   return data
 }
 export default async function handler(req, res) {
-  const data = await getVaccineSheet()
-  res.status(200).json(data)
+  if (req.method === 'GET') {
+    try {
+      const data = await getVaccineSheet()
+      res.status(200).json(data)
+    } catch (e) {
+      console.log(e)
+      res.status(404).send({ error: ':(' })
+    }
+  } else {
+    res.status(501).send({
+      error: `${req.method} method is not supported by the server and cannot be handled`,
+    })
+  }
 }

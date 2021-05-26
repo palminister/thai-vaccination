@@ -2,17 +2,17 @@ import { getVaccineSheet } from './vaccine'
 
 export async function getSummary() {
   const data = await getVaccineSheet()
-  // Total Vaccinated Number
+  // Total Vaccination Number
   const goalAmount = 100000000
   const population = 66000000
-  const totalVaccinated = await data[data.length - 1].totalVac
-  const totalVaccinatedToGoalPercentage =
-    totalVaccinated != undefined
-      ? parseFloat(((totalVaccinated * 100) / goalAmount).toFixed(2))
+  const totalVaccination = await data[data.length - 1].totalVac
+  const totalVaccinationToGoalPercentage =
+    totalVaccination != undefined
+      ? parseFloat(((totalVaccination * 100) / goalAmount).toFixed(2))
       : null
-  const totalVaccinatedToPopulationPercentage =
-    (totalVaccinated != undefined) & (totalVaccinated != null)
-      ? parseFloat(((totalVaccinated * 100) / (population * 2)).toFixed(2))
+  const totalVaccinationToPopulationPercentage =
+    (totalVaccination != undefined) & (totalVaccination != null)
+      ? parseFloat(((totalVaccination * 100) / (population * 2)).toFixed(2))
       : null
   // First Dose Number
   const firstDose = await data[data.length - 1].firstDose
@@ -40,21 +40,21 @@ export async function getSummary() {
   const averageVacRate = parseFloat((sumDifference / 7).toFixed(2))
   // Years left
   const yearsLeft = parseFloat(
-    ((goalAmount - totalVaccinated) / averageVacRate / 365).toFixed(2)
+    ((goalAmount - totalVaccination) / averageVacRate / 365).toFixed(2)
   )
   const latestDate = data != undefined ? data[data.length - 1].date : null
   const summary = {
     vaccineGoalAmount: goalAmount,
     thaiPopulation: population,
-    totalVaccinated: totalVaccinated,
-    totalVaccinatedToGoalPercentage: totalVaccinatedToGoalPercentage,
-    totalVaccinatedToPopulationPercentage:
-      totalVaccinatedToPopulationPercentage,
+    totalVaccination: totalVaccination,
+    totalVaccinationToGoalPercentage: totalVaccinationToGoalPercentage,
+    totalVaccinationToPopulationPercentage:
+      totalVaccinationToPopulationPercentage,
     firstDose: firstDose,
     firstDosePercentage: firstDosePercentage,
     secondDose: secondDose,
     secondDosePercentage: secondDosePercentage,
-    todayVaccinationRate: vacRate,
+    latestVaccinationRate: vacRate,
     doseCompareToYesterday: doseCompareToYesterday,
     averageVaccinationRate: averageVacRate,
     yearsLeft: yearsLeft,
@@ -63,6 +63,17 @@ export async function getSummary() {
   return summary
 }
 export default async function handler(req, res) {
-  const summary = await getSummary()
-  res.status(200).json(summary)
+  if (req.method === 'GET') {
+    try {
+      const summary = await getSummary()
+      res.status(200).json(summary)
+    } catch (e) {
+      console.log(e)
+      res.status(404).send({ error: ':(' })
+    }
+  } else {
+    res.status(501).send({
+      error: `${req.method} method is not supported by the server and cannot be handled`,
+    })
+  }
 }
