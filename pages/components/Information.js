@@ -51,7 +51,7 @@ const Information = (data) => {
           อัตราการฉีดวัคซีนเฉลี่ย 7 วันล่าสุด (โดส)
         </p>
       </div>
-      <div className="grid grid-cols-1 gap-8 p-5 text-center text-gray-100 sm:grid-cols-2 font-anuphan">
+      <div className="grid grid-cols-1 gap-10 p-5 text-center text-gray-100 sm:grid-cols-2 font-anuphan">
         <div className={bigDivClass} data-aos="fade" data-aos-duration="1000">
           <div>
             <div className="flex justify-center"></div>

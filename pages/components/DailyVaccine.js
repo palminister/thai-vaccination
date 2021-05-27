@@ -176,7 +176,7 @@ const DailyVaccine = (data) => {
   }, [])
 
   return (
-    <div className="w-screen px-5 pt-3 pb-10" data-aos="fade">
+    <div className="w-screen p-5 md:px-10" data-aos="fade">
       <div className="w-full p-3 bg-gray-700 rounded-xl bg-opacity-20 h-1/2 sm:p-10 lg:px-40">
         <div className="flex w-full">
           <div className="p-5 m-auto text-2xl text-center text-gray-200 font-anuphan">
