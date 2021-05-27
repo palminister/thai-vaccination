@@ -79,17 +79,29 @@ const DailyVaccine = (data) => {
     x.rangeRound([0, width])
     y.rangeRound([height, 0])
 
+    var ticks = data
+      .filter(function (d, i) {
+        if (width >= 300) {
+          return i % 5 === 0
+        } else {
+          return i % 10 === 0
+        }
+      })
+      .map((d) => d.date)
+
+    // console.log(width)
+
     g.select('.axis--x')
       .attr('transform', 'translate(0,' + height + ')')
-      .call(d3.axisBottom(x))
+      .call(d3.axisBottom(x).tickValues(ticks))
       .selectAll('text')
       .style('text-anchor', 'end')
       .attr('dx', '-1em')
-      .attr('dy', '-.55em')
+      .attr('dy', '-0.8em')
       .attr('transform', 'rotate(-90)')
       .style('fill', '#D1D5DB')
       .attr('font-family', 'Anuphan')
-      .attr('class', 'hidden sm:block')
+    // .attr('class', 'hidden sm:block')
 
     g.select('.axis--x').select('.domain').attr('opacity', '0')
 
@@ -100,6 +112,15 @@ const DailyVaccine = (data) => {
     g.select('.axis--y').selectAll('.tick line').attr('opacity', '0')
 
     g.select('.axis--y').selectAll('.tick text').style('fill', '#D1D5DB')
+
+    g.append('text')
+      .attr('dx', '1.3em')
+      .attr('dy', '0.3em')
+      .attr('text-anchor', 'end')
+      .text('โดส')
+      .style('fill', '#D1D5DB')
+      .attr('font-family', 'Anuphan')
+      .attr('font-size', '0.71em')
 
     // Enter
     var bars = g.selectAll('.bar').data(theData)
