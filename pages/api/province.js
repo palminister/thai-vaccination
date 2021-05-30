@@ -16,17 +16,21 @@ export async function getProvinceSheet() {
   //  Map Data
   const provinceRaw = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.SPREADSHEET_ID,
-    range: 'Raw_Data_Provinces!A:I',
+    range: 'Raw_Data_Provinces!A:K',
   })
   const provinceData = provinceRaw.data.values.slice(3).map((element) => ({
     region: element[0],
     provinceTH: element[1],
     province: element[2],
-    totalPopulation: parseInt(String(element[3]).split(',').join('')),
-    totalDose: parseInt(String(element[4]).split(',').join('')),
-    firstDose: parseInt(String(element[5]).split(',').join('')),
-    secondDose: parseInt(String(element[6]).split(',').join('')),
-    relativePercentage: parseFloat(String(element[8]).slice(0, -1)),
+    totalPopulation: parseInt(String(element[5]).split(',').join('')),
+    totalDose: parseInt(String(element[6]).split(',').join('')),
+    firstDose: parseInt(String(element[7]).split(',').join('')),
+    secondDose: parseInt(String(element[8]).split(',').join('')),
+    relativePercentage: parseFloat(String(element[10]).slice(0, -1)),
+    // totalLatestDose:
+    //   parseInt(String(element[3]).split(',').join('')) +
+    //   parseInt(String(element[4]).split(',').join('')),
+    latestDate: provinceRaw.data.values.slice(1)[0][3],
   }))
   return provinceData
 }
